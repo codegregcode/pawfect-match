@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Pawfect Match
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Find the canine companion that'll match your lifestyle! - Find out which dog breed matches your lifestyle!
 
-## Available Scripts
+### Description
 
-In the project directory, you can run:
+Our app aims to provide users with personalised dog breed recommendations based on their preferences and lifestyle. We strive to create an engaging and user-friendly experience that helps individuals find the perfect furry companion for their home and lifestyle.
 
-### `npm start`
+It'll do this by taking the users information such as house size, training requirements/experience etc in a questionnaire. The user's responses are matched and then sent as params to [API-Ninja&#39;s dog API](https://api-ninjas.com/api/dogs). The results will be shown to user and hopefully they will find there pawfect match! . User can signup to save questionnaire responses, which means they can come back at a later date to see results, and can also change response to the questionnaire.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Tech:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- React Router
+- React-Testing-Library
+- AirBnB Style Guide
+- Jest
+- TDD
+- Node.js
+- Axios
 
-### `npm test`
+### Built by...
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Abbie](https://github.com/Abi-Turner)
+- [Lee](https://github.com/lamoss1)
+- [Greg](https://github.com/codegregcode)
