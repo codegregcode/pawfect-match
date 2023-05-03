@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import SearchResults from './SearchResults';
 
 const PersonQuestionnaire = () => {
   const [answers, setAnswers] = useState({});
@@ -21,19 +22,20 @@ const PersonQuestionnaire = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = {
-      energy: energy,
-      trainability: trainability,
-      shedding: shedding,
-      barking: barking,
+      energy,
+      trainability,
+      shedding,
+      barking,
     };
 
     axios
       .get('https://api.api-ninjas.com/v1/dogs', {
         params: params,
-        headers: { 'X-Api-Key': 'PUT YOUR API HERE' },
+        headers: { 'X-Api-Key': 'ENTER YOUR API KEY HERE' },
       })
       .then((response) => {
         console.log(response.data);
+        setBreeds(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -44,7 +46,7 @@ const PersonQuestionnaire = () => {
     <div>
       <h1>Questionnaire</h1>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label htmlFor="energy">
           Energy (0-5):
           <input
             type="number"
@@ -52,7 +54,7 @@ const PersonQuestionnaire = () => {
             onChange={(event) => setEnergy(event.target.value)}
           />
         </label>
-        <label>
+        <label htmlFor="training">
           Training
           <input
             type="number"
@@ -60,7 +62,7 @@ const PersonQuestionnaire = () => {
             onChange={(event) => setTrainability(event.target.value)}
           />
         </label>
-        <label>
+        <label htmlFor="shedding">
           Shedding
           <input
             type="number"
@@ -68,7 +70,7 @@ const PersonQuestionnaire = () => {
             onChange={(event) => setShedding(event.target.value)}
           />
         </label>
-        <label>
+        <label htmlFor="barking">
           Barking
           <input
             type="number"
@@ -78,7 +80,6 @@ const PersonQuestionnaire = () => {
         </label>
         <button type="submit">Submit</button>
       </form>
-
       <div className="living">
         <h2>Where do you live?</h2>
         <button onClick={() => handleAnswer('location', 'house')}>House</button>
