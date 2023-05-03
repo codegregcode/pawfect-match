@@ -22,12 +22,15 @@ const PersonQuestionnaire = () => {
     event.preventDefault();
     const params = {
       energy: energy,
+      trainability: trainability,
+      shedding: shedding,
+      barking: barking,
     };
 
     axios
       .get('https://api.api-ninjas.com/v1/dogs', {
         params: params,
-        headers: { 'X-Api-Key': 'PUT YOUR API KEY IN HERE' },
+        headers: { 'X-Api-Key': 'PUT YOUR API HERE' },
       })
       .then((response) => {
         console.log(response.data);
