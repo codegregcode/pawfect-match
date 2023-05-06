@@ -2,13 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import PersonQuestionnaire from "./PersonQuestionnaire";
 import Welcome from "./Welcome";
-
 import "../styles/app.css";
 
 const App = () => {
   return (
     <div className="App">
-      <h1>Pawfect Match</h1>
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="questionnaire" element={<PersonQuestionnaire />} />
