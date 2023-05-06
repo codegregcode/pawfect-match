@@ -42,7 +42,7 @@ const PersonQuestionnaire = () => {
     axios
       .get("https://api.api-ninjas.com/v1/dogs", {
         params,
-        headers: { "X-Api-Key": "jdp3FIXDk65mSaJwovRCXg==fgQngpm9S336hgoo" },
+        headers: { "X-Api-Key": process.env.REACT_APP_API_KEY },
       })
       .then((response) => {
         console.log(response.data);
