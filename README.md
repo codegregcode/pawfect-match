@@ -21,6 +21,6 @@ It'll do this by taking the users information such as house size, training requi
 
 ### Built by...
 
-- [Abbie](https://github.com/Abi-Turner)
+- [Abi](https://github.com/Abi-Turner)
 - [Lee](https://github.com/lamoss1)
 - [Greg](https://github.com/codegregcode)
