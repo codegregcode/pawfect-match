@@ -3,40 +3,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import SliderInput from "./SliderInput";
+import dogFilter from "../utilities/dogFilter";
 
 const PersonQuestionnaire = () => {
-  const [trainability, setTrainability] = useState("");
-  const [energy, setEnergy] = useState(3);
-  const [shedding, setShedding] = useState(3);
-  const [barking, setBarking] = useState(3);
-  const [sizePreference, setSizePreference] = useState("");
+  const [energy, setEnergy] = useState(0);
+  const [outdoorSpace, setOutdoorSpace] = useState("");
+  const [children, setChildren] = useState("");
   const [dogData, setDogData] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = {
       energy,
-      trainability,
-      shedding,
-      barking,
-    };
-
-    const filterDogBySize = (dogs) => {
-      if (sizePreference === "small") {
-        const smallDogs = dogs.filter((dog) => dog.max_height_male <= 20);
-        console.log("Filtered small dogs", smallDogs);
-        return smallDogs;
-      }
-      if (sizePreference === "medium") {
-        return dogs.filter(
-          (dog) => dog.max_height_male > 20 && dog.max_height_male < 30
-        );
-      }
-      if (sizePreference === "large") {
-        return dogs.filter((dog) => dog.max_height_male > 30);
-      }
-      return dogs;
     };
 
     axios
@@ -46,61 +24,85 @@ const PersonQuestionnaire = () => {
       })
       .then((response) => {
         console.log(response.data);
-        const filteredDogs = filterDogBySize(response.data);
+        const filteredDogs = dogFilter(response.data, outdoorSpace, children);
+        console.log("filteredDogs", filteredDogs);
         setDogData(filteredDogs);
+        if (filteredDogs.length === 0) {
+          toast.error("Sorry no dogs match your critera!");
+        } else {
+          toast.success("Dogs successfully fetched!");
+        }
       })
       .catch((error) => {
         console.error(error);
-        toast.error("Sorry no dogs match your critera!");
+        toast.error("Error fetching dogs. Please try again later.");
       });
   };
 
-  const handleSizePreferenceChange = (event) => {
-    setSizePreference(event.target.value);
+  // const handleSizePreferenceChange = (event) => {
+  //   setSizePreference(event.target.value);
+  // };
+
+  const handleOutdoorSpaceChange = (event) => {
+    setOutdoorSpace(event.target.value);
+  };
+
+  const handleChildrenChange = (event) => {
+    setChildren(event.target.value);
+  };
+
+  const handleLowActivityClick = () => {
+    setEnergy(2);
+  };
+
+  const handleAverageActivityClick = () => {
+    setEnergy(3);
+  };
+
+  const handleHighActivityClick = () => {
+    setEnergy(4);
+  };
+
+  const handleUltraActiveClick = () => {
+    setEnergy(5);
   };
 
   return (
     <>
       <h1>Questionnaire</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="energy">
-          How much daily exercise will your dog get?
-          <SliderInput
-            value={energy}
-            onChange={setEnergy}
-            labelText1=" Indoor play only "
-            labelText2=" Regular long walks and hikes! "
-          />
+        <label>
+          Will you and your pup have an active lifestyle?
+          <div>
+            <button type="button" onClick={handleLowActivityClick}>
+              Just short walks
+            </button>
+            <button type="button" onClick={handleAverageActivityClick}>
+              We will go on occasional long walks but we&apos;re pretty chilled!
+            </button>
+            <button type="button" onClick={handleHighActivityClick}>
+              We will go on daily long walks with lots of play!
+            </button>
+            <button type="button" onClick={handleUltraActiveClick}>
+              We will go on loads of long walks, hikes and jogs!
+            </button>
+          </div>
         </label>
-        <label htmlFor="training">
-          Training?
-          <SliderInput value={trainability} onChange={setTrainability} />
+        <label htmlFor="outdoorSpace">
+          How much outdoor space do you have?
+          <select id="outdoorSpace" onChange={handleOutdoorSpaceChange}>
+            <option value="none">I have no outdoor space</option>
+            <option value="medium">I have a small garden</option>
+            <option value="large">I have a large garden</option>
+          </select>
         </label>
-        <label htmlFor="shedding">
-          How do you feel about shedding?
-          <SliderInput
-            value={shedding}
-            onChange={setShedding}
-            labelText1=" I don't want a lot of shedding "
-            labelText2=" Shedding doesn't bother me! "
-          />
-        </label>
-        <label htmlFor="barking">
-          How do you feel about Barking
-          <SliderInput
-            value={barking}
-            onChange={setBarking}
-            labelText1=" I don't like a lot of barking "
-            labelText2=" I don't mind barking! "
-          />
-        </label>
-        <label htmlFor="sizePreference">
-          What is your size preference?
-          <select id="sizePreference" onChange={handleSizePreferenceChange}>
-            <option value="">Select a size preference</option>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
+        <label htmlFor="children">
+          Do you have Children?
+          <select id="children" onChange={handleChildrenChange}>
+            <option value="">No</option>
+            <option value="maybe">Maybe one day.</option>
+            <option value="yesOver12">Yes, over 12 years old</option>
+            <option value="yesUnder12">Yes, under 12 years old</option>
           </select>
         </label>
         <button type="submit">Submit</button>
@@ -112,10 +114,11 @@ const PersonQuestionnaire = () => {
             <div key={dog.name}>
               <h3>{dog.name}</h3>
               <img src={dog.image_link} alt={dog.name} />
-              <p>Energy: {dog.energy}</p>
-              <p>Training: {dog.trainability}</p>
               <p>Shedding: {dog.shedding}</p>
               <p>Barking: {dog.barking}</p>
+              <p>Energy: {dog.energy}</p>
+              <p>Good With Children: {dog.good_with_children}</p>
+              <p>Max Size: {dog.max_height_male} &quot;</p>
             </div>
           ))}
         </div>
