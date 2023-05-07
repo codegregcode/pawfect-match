@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import dogFilter from "../utilities/dogFilter";
 import Breeds from "./Breeds";
 
@@ -51,8 +52,6 @@ const PersonQuestionnaire = () => {
           toast.error("Sorry no dogs match your critera!");
         } else {
           toast.success("Dogs successfully fetched!");
-          // eslint-disable-next-line no-console
-          console.log(filteredDogs, "filtereddogs");
         }
       })
       .catch(() => {
@@ -107,6 +106,7 @@ const PersonQuestionnaire = () => {
   return (
     <>
       <h1>Pawfect Match!</h1>
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <label>
           Will you and your pup have an active lifestyle?
