@@ -105,7 +105,7 @@ const PersonQuestionnaire = () => {
 
   return (
     <>
-      <h1>Pawfect Match!</h1>
+      <h2>Pawfect Match!</h2>
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         <label>

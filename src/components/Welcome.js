@@ -6,7 +6,7 @@ const Welcome = () => {
     <div>
       <h2>Find your Paw Pal</h2>
       <p>
-        Click <Link to="questionnaire">here</Link>
+        <Link to="questionnaire">click here</Link>
       </p>
     </div>
   );
