@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import dogFilter from "../utilities/dogFilter";
+import Breeds from "./Breeds";
 
 const PersonQuestionnaire = () => {
   const [energy, setEnergy] = useState(0);
@@ -39,10 +40,6 @@ const PersonQuestionnaire = () => {
       });
   };
 
-  // const handleSizePreferenceChange = (event) => {
-  //   setSizePreference(event.target.value);
-  // };
-
   const handleOutdoorSpaceChange = (event) => {
     setOutdoorSpace(event.target.value);
   };
@@ -75,13 +72,13 @@ const PersonQuestionnaire = () => {
           Will you and your pup have an active lifestyle?
           <div>
             <button type="button" onClick={handleLowActivityClick}>
-              Just short walks
+              Occasional walks
             </button>
             <button type="button" onClick={handleAverageActivityClick}>
-              We will go on occasional long walks but we&apos;re pretty chilled!
+              We will go on regular short walks but we&apos;re pretty chilled!
             </button>
             <button type="button" onClick={handleHighActivityClick}>
-              We will go on daily long walks with lots of play!
+              We will go on occasional long walks with lots of play!
             </button>
             <button type="button" onClick={handleUltraActiveClick}>
               We will go on loads of long walks, hikes and jogs!
@@ -91,6 +88,7 @@ const PersonQuestionnaire = () => {
         <label htmlFor="outdoorSpace">
           How much outdoor space do you have?
           <select id="outdoorSpace" onChange={handleOutdoorSpaceChange}>
+            <option value="">Please select an option</option>
             <option value="none">I have no outdoor space</option>
             <option value="medium">I have a small garden</option>
             <option value="large">I have a large garden</option>
@@ -99,7 +97,8 @@ const PersonQuestionnaire = () => {
         <label htmlFor="children">
           Do you have Children?
           <select id="children" onChange={handleChildrenChange}>
-            <option value="">No</option>
+            <option value="">Please select an option</option>
+            <option value="no">No</option>
             <option value="maybe">Maybe one day.</option>
             <option value="yesOver12">Yes, over 12 years old</option>
             <option value="yesUnder12">Yes, under 12 years old</option>
@@ -108,20 +107,7 @@ const PersonQuestionnaire = () => {
         <button type="submit">Submit</button>
       </form>
       {dogData && dogData.length > 0 ? (
-        <div>
-          <h2>Results:</h2>
-          {dogData.map((dog) => (
-            <div key={dog.name}>
-              <h3>{dog.name}</h3>
-              <img src={dog.image_link} alt={dog.name} />
-              <p>Shedding: {dog.shedding}</p>
-              <p>Barking: {dog.barking}</p>
-              <p>Energy: {dog.energy}</p>
-              <p>Good With Children: {dog.good_with_children}</p>
-              <p>Max Size: {dog.max_height_male} &quot;</p>
-            </div>
-          ))}
-        </div>
+        <Breeds dogData={dogData} />
       ) : (
         <div>
           <p>Sorry no dogs match your critera!</p>
