@@ -1,4 +1,4 @@
-const dogFilter = (dogs, outdoorSpace, children) => {
+const dogFilter = (dogs, outdoorSpace, children, otherDogs) => {
   return dogs.filter((dog) => {
     const dogSize = dog.max_height_male;
     let filtered = true;
@@ -19,6 +19,12 @@ const dogFilter = (dogs, outdoorSpace, children) => {
       filtered = filtered && dog.good_with_children >= 2;
     } else if (children === "no") {
       filtered = filtered && dog.good_with_children >= 1;
+    }
+
+    if (otherDogs === "yes") {
+      filtered = filtered && dog.good_with_other_dogs >= 4;
+    } else if (otherDogs === "maybe") {
+      filtered = filtered && dog.good_with_other_dogs >= 3;
     }
 
     return filtered;

@@ -12,6 +12,7 @@ const Breeds = ({ dogData }) => {
           <p>Barking: {dog.barking}</p>
           <p>Energy: {dog.energy}</p>
           <p>Good With Children: {dog.good_with_children}</p>
+          <p>Good With Other Dogs: {dog.good_with_other_dogs}</p>
           <p>Max Size: {dog.max_height_male} &quot;</p>
         </div>
       ))}
