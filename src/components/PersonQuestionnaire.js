@@ -104,7 +104,7 @@ const PersonQuestionnaire = () => {
   };
 
   return (
-    <>
+    <div className="question-container">
       <h2>Pawfect Match!</h2>
       <ToastContainer />
       <form onSubmit={handleSubmit}>
@@ -208,7 +208,7 @@ const PersonQuestionnaire = () => {
             </button>
           </div>
         </label>
-        <label htmlFor="otherDogs">
+        <label htmlFor="training">
           How much training will you give your dog?
           <div>
             <button type="button" onClick={() => handleTrainingClick("basic")}>
@@ -310,7 +310,7 @@ const PersonQuestionnaire = () => {
         <button type="submit">Submit</button>
       </form>
       {dogData && dogData.length > 0 && <Breeds dogData={dogData} />}
-    </>
+    </div>
   );
 };
 
