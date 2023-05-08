@@ -16,6 +16,7 @@ import Grooming from "./questions/Grooming";
 import Shedding from "./questions/Shedding";
 import Barking from "./questions/Barking";
 import Drooling from "./questions/Drooling";
+import "../styles/questionnaire.css";
 
 const Questionnaire = () => {
   const [activeQuestion, setActiveQuestion] = useState(0);
