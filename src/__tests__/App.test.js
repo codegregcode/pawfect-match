@@ -4,25 +4,33 @@ import { MemoryRouter } from "react-router-dom";
 import App from "../components/App";
 
 describe("App", () => {
-  it("renders the Welcome component on the '/' route", () => {
+  beforeEach(() => {
     render(
       <MemoryRouter initialEntries={["/"]}>
         <App />
       </MemoryRouter>
     );
+  });
+
+  it("renders the Welcome component on the '/' route", () => {
     const welcomeElement = screen.getByText(/find your paw pal/i);
+
     expect(welcomeElement).toBeInTheDocument();
   });
 
   it("renders the PersonQuestionnaire component when the link is clicked", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>
-    );
-    const linkElement = screen.getByText(/click here/i);
+    const linkElement = screen.getByText("click here");
     fireEvent.click(linkElement);
     const questionElement = screen.getByText(/Pawfect Match!/i);
+
+    expect(questionElement).toBeInTheDocument();
+  });
+
+  it("renders Questionnaire component when the clink is clicked", () => {
+    const linkElement = screen.getByText("click here part 2");
+    fireEvent.click(linkElement);
+    const questionElement = screen.getByText(/Pawfect Match!/i);
+
     expect(questionElement).toBeInTheDocument();
   });
 });
