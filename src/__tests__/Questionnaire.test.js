@@ -71,8 +71,7 @@ describe("Questionnaire", () => {
   });
 
   it("displays error message when trying to submit before answering questions", () => {
-    const submitButton = screen.getByText("Submit");
-    fireEvent.click(submitButton);
+    fireEvent.click(screen.getByText("Submit"));
 
     expect(toast.error).toHaveBeenCalledWith("Please answer all questions.");
   });
