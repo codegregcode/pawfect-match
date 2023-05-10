@@ -21,7 +21,9 @@ describe("App", () => {
   it("renders the PersonQuestionnaire component when the link is clicked", () => {
     const linkElement = screen.getByText("click here");
     fireEvent.click(linkElement);
-    const questionElement = screen.getByText(/Pawfect Match!/i);
+    const questionElement = screen.getByText(
+      /Will you and your pup have an active lifestyle?/i
+    );
 
     expect(questionElement).toBeInTheDocument();
   });
@@ -29,7 +31,9 @@ describe("App", () => {
   it("renders Questionnaire component when the clink is clicked", () => {
     const linkElement = screen.getByText("click here part 2");
     fireEvent.click(linkElement);
-    const questionElement = screen.getByText(/Pawfect Match!/i);
+    const questionElement = screen.getByText(
+      /Will you and your pup have an active lifestyle?/i
+    );
 
     expect(questionElement).toBeInTheDocument();
   });
