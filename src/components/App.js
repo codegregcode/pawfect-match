@@ -4,14 +4,18 @@ import PersonQuestionnaire from "./PersonQuestionnaire";
 import Welcome from "./Welcome";
 import "../styles/app.css";
 import Questionnaire from "./Questionnaire";
+import Navbar from "./Navbar";
+import LoginSignup from "./LoginSignup";
 
 const App = () => {
   return (
     <div className="App">
+      <Navbar />
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/personQuestionnaire" element={<PersonQuestionnaire />} />
         <Route path="/questionnaire" element={<Questionnaire />} />
+        <Route path="/login-signup" element={<LoginSignup />} />
       </Routes>
     </div>
   );
