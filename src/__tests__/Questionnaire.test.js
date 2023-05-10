@@ -1,6 +1,9 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { toast } from "react-toastify";
 import Questionnaire from "../components/Questionnaire";
+
+jest.mock("react-toastify");
 
 describe("Questionnaire", () => {
   beforeEach(() => {
@@ -67,11 +70,10 @@ describe("Questionnaire", () => {
     expect(screen.getByText("Does drooling bother you?")).toBeInTheDocument();
   });
 
-  xit("displays error message when trying to submit before answering questions", () => {
-    fireEvent.click(screen.getByText("Submit"));
+  it("displays error message when trying to submit before answering questions", () => {
+    const submitButton = screen.getByText("Submit");
+    fireEvent.click(submitButton);
 
-    expect(
-      screen.getByText("Please answer all questions.")
-    ).toBeInTheDocument();
+    expect(toast.error).toHaveBeenCalledWith("Please answer all questions.");
   });
 });
