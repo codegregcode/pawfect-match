@@ -3,19 +3,22 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import dogFilter from "../utilities/dogFilter";
 import Breeds from "./Breeds";
-import Energy from "./questions/Energy";
-import OutdoorSpace from "./questions/OutdoorSpace";
-import IndoorSpace from "./questions/IndoorSpace";
-import Children from "./questions/Children";
-import OtherDogs from "./questions/OtherDogs";
-import Training from "./questions/Training";
-import Friendly from "./questions/Friendly";
-import Grooming from "./questions/Grooming";
-import Shedding from "./questions/Shedding";
-import Barking from "./questions/Barking";
-import Drooling from "./questions/Drooling";
+import {
+  Energy,
+  OutdoorSpace,
+  IndoorSpace,
+  Children,
+  OtherDogs,
+  Training,
+  Friendly,
+  Grooming,
+  Shedding,
+  Barking,
+  Drooling,
+} from "./questionComponents";
 import "../styles/questionnaire.css";
 
 const Questionnaire = () => {
@@ -35,7 +38,6 @@ const Questionnaire = () => {
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
 
   useEffect(() => {
-    // Check if all questions have been answered
     setAllQuestionsAnswered(
       energy !== "" &&
         outdoorSpace !== "" &&
@@ -263,7 +265,6 @@ const Questionnaire = () => {
 
   return (
     <div className="question-container">
-      <h2>Pawfect Match!</h2>
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         {questions[activeQuestion].component}
@@ -271,10 +272,24 @@ const Questionnaire = () => {
           type="button"
           onClick={handlePrevious}
           disabled={activeQuestion === 0}
+          className="btn-prev"
         >
-          Previous Question
+          <FaArrowLeft />
         </button>
-        <button type="submit">Submit</button>
+        {activeQuestion === questions.length - 1 ? (
+          <button type="submit" className="btn-submit">
+            Submit
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={handleNextQuestion}
+            disabled={activeQuestion === questions.length - 1}
+            className="btn-next"
+          >
+            <FaArrowRight />
+          </button>
+        )}
       </form>
       {dogData && dogData.length > 0 && <Breeds dogData={dogData} />}
     </div>
