@@ -268,14 +268,16 @@ const Questionnaire = () => {
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         {questions[activeQuestion].component}
-        <button
-          type="button"
-          onClick={handlePrevious}
-          disabled={activeQuestion === 0}
-          className="btn-prev"
-        >
-          <FaArrowLeft />
-        </button>
+        {activeQuestion !== 0 && (
+          <button
+            type="button"
+            onClick={handlePrevious}
+            disabled={activeQuestion === 0}
+            className="btn-prev"
+          >
+            <FaArrowLeft />
+          </button>
+        )}
         {activeQuestion === questions.length - 1 ? (
           <button type="submit" className="btn-submit">
             Submit

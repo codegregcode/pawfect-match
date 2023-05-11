@@ -63,9 +63,16 @@
   outline: none;
 }
 
+.btn-question:active,
+.btn-question:focus,
+.btn-question:active:focus {
+  background-color: var(--color-neutral);
+  color: #fff;
+}
+
 button:not(.btn-first):hover,
 button:not(.btn-first):active {
-  background-color: var(--color-dark);
+  background-color: var(--color-neutral);
   color: #fff;
 }
 
