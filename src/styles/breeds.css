@@ -20,6 +20,7 @@
   border-radius: 10px;
   background-color: var(--color-neutral);
   transition: all 0.3s ease-in-out;
+  z-index: 2;
 }
 
 .breed-card:not(.slick-active) {

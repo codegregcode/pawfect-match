@@ -7,6 +7,7 @@ import "../styles/breeds.css";
 const Breeds = ({ dogData }) => {
   const settings = {
     dots: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -23,6 +24,7 @@ const Breeds = ({ dogData }) => {
         },
       },
     ],
+    focusOnSelect: true,
   };
 
   return (

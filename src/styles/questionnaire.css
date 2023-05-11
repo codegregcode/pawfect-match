@@ -97,4 +97,5 @@ h3 {
   opacity: 0.1;
   transform: rotate(-45deg);
   font-size: 400px;
+  z-index: 1;
 }
