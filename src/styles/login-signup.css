@@ -1,0 +1,21 @@
+.btn-login {
+  background-color: var(--color-secondary);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.login-signup-header {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+  
