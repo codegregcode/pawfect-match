@@ -5,6 +5,7 @@ import "../styles/navbar.css";
 const Navbar = () => {
   return (
     <div className="navbar-container">
+      <Link to="/">Home</Link>
       <Link to="/login-signup">
         <button className="navbar-button" type="submit">
           Login/SignUp!
