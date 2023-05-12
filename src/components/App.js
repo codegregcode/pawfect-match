@@ -10,6 +10,7 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
+      <div className="background-image" />
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/questionnaire" element={<Questionnaire />} />

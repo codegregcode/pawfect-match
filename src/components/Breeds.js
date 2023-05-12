@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -31,6 +32,7 @@ const Breeds = ({ dogData }) => {
     <div className="breeds-container">
       <h2>Results:</h2>
       <Slider {...settings}>
+        {console.log(dogData)}
         {dogData.map((dog) => (
           <div key={dog.name} className="breed-card">
             <img src={dog.image_link} alt={dog.name} />
