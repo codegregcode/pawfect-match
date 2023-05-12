@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { TbPaw } from "react-icons/tb";
 import dogFilter from "../utilities/dogFilter";
 import Breeds from "./Breeds";
 import {
@@ -268,14 +269,16 @@ const Questionnaire = () => {
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         {questions[activeQuestion].component}
-        <button
-          type="button"
-          onClick={handlePrevious}
-          disabled={activeQuestion === 0}
-          className="btn-prev"
-        >
-          <FaArrowLeft />
-        </button>
+        {activeQuestion !== 0 && (
+          <button
+            type="button"
+            onClick={handlePrevious}
+            disabled={activeQuestion === 0}
+            className="btn-prev"
+          >
+            <FaArrowLeft />
+          </button>
+        )}
         {activeQuestion === questions.length - 1 ? (
           <button type="submit" className="btn-submit">
             Submit
@@ -292,6 +295,9 @@ const Questionnaire = () => {
         )}
       </form>
       {dogData && dogData.length > 0 && <Breeds dogData={dogData} />}
+      <div className="background-icon">
+        <TbPaw />
+      </div>
     </div>
   );
 };

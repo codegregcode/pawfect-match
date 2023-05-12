@@ -63,9 +63,16 @@
   outline: none;
 }
 
+.btn-question:active,
+.btn-question:focus,
+.btn-question:active:focus {
+  background-color: var(--color-neutral);
+  color: #fff;
+}
+
 button:not(.btn-first):hover,
 button:not(.btn-first):active {
-  background-color: var(--color-dark);
+  background-color: var(--color-neutral);
   color: #fff;
 }
 
@@ -82,4 +89,13 @@ h3 {
   font-weight: 600;
   margin-top: 50px;
 }
-  
+
+.background-icon {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  opacity: 0.1;
+  transform: rotate(-45deg);
+  font-size: 400px;
+  z-index: 1;
+}
