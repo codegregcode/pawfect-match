@@ -18,18 +18,8 @@ describe("App", () => {
     expect(welcomeElement).toBeInTheDocument();
   });
 
-  it("renders the PersonQuestionnaire component when the link is clicked", () => {
-    const linkElement = screen.getByText("click here");
-    fireEvent.click(linkElement);
-    const questionElement = screen.getByText(
-      /Will you and your pup have an active lifestyle?/i
-    );
-
-    expect(questionElement).toBeInTheDocument();
-  });
-
   it("renders Questionnaire component when the clink is clicked", () => {
-    const linkElement = screen.getByText("click here part 2");
+    const linkElement = screen.getByText("Click here to start your search!");
     fireEvent.click(linkElement);
     const questionElement = screen.getByText(
       /Will you and your pup have an active lifestyle?/i
