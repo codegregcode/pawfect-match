@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -40,16 +41,16 @@ const Questionnaire = () => {
 
   useEffect(() => {
     setAllQuestionsAnswered(
-      energy !== "" &&
-        outdoorSpace !== "" &&
-        indoorSpace !== "" &&
-        children !== "" &&
-        otherDogs !== "" &&
-        training !== "" &&
-        friendliness !== "" &&
-        grooming !== "" &&
-        shedding !== "" &&
-        barking !== "" &&
+      energy !== "" ||
+        outdoorSpace !== "" ||
+        indoorSpace !== "" ||
+        children !== "" ||
+        otherDogs !== "" ||
+        training !== "" ||
+        friendliness !== "" ||
+        grooming !== "" ||
+        shedding !== "" ||
+        barking !== "" ||
         drooling !== ""
     );
   }, [
@@ -67,7 +68,9 @@ const Questionnaire = () => {
   ]);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
 
     if (!allQuestionsAnswered) {
       toast.error("Please answer all questions.");
@@ -99,6 +102,7 @@ const Questionnaire = () => {
           drooling
         );
         setDogData(filteredDogs);
+        console.log("filtered dogs", filteredDogs);
         if (filteredDogs.length === 0) {
           toast.error("Sorry no dogs match your critera!");
         } else {
@@ -119,46 +123,57 @@ const Questionnaire = () => {
   };
 
   const handleEnergyClick = (energyLevel) => {
+    console.log("Energy level clicked:", energyLevel);
     setEnergy(energyLevel);
   };
 
   const handleOutdoorSpaceClick = (value) => {
+    console.log("outdoor clicked:", value);
     setOutdoorSpace(value);
   };
 
   const handleIndoorSpaceClick = (value) => {
+    console.log("indoor clicked:", value);
     setIndoorSpace(value);
   };
 
   const handleChildrenClick = (value) => {
+    console.log("children clicked:", value);
     setChildren(value);
   };
 
   const handleOtherDogsClick = (value) => {
+    console.log("otherDpgs clicked:", value);
     setOtherDogs(value);
   };
 
   const handleTrainingClick = (value) => {
+    console.log("training clicked:", value);
     setTraining(value);
   };
 
   const handleFriendlinessClick = (value) => {
+    console.log("friendly clicked:", value);
     setFriendliness(value);
   };
 
   const handleGroomingClick = (value) => {
+    console.log("grooming clicked:", value);
     setGrooming(value);
   };
 
   const handleSheddingClick = (value) => {
+    console.log("shedding clicked:", value);
     setShedding(value);
   };
 
   const handleBarkingClick = (value) => {
+    console.log("barkingclicked:", value);
     setBarking(value);
   };
 
   const handleDroolingClick = (value) => {
+    console.log("drooling clicked:", value);
     setDrooling(value);
   };
 
@@ -267,7 +282,7 @@ const Questionnaire = () => {
   return (
     <div className="question-container">
       <ToastContainer />
-      <form onSubmit={handleSubmit}>
+      <form>
         {questions[activeQuestion].component}
         {activeQuestion !== 0 && (
           <button
@@ -280,7 +295,7 @@ const Questionnaire = () => {
           </button>
         )}
         {activeQuestion === questions.length - 1 ? (
-          <button type="submit" className="btn-submit">
+          <button type="button" className="btn-submit" onClick={handleSubmit}>
             Submit
           </button>
         ) : (

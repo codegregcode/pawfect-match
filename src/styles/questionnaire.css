@@ -91,11 +91,11 @@ h3 {
 }
 
 .background-icon {
-  position: fixed;
-  bottom: 0;
-  right: 0;
+  position: absolute;
+  top: -20px;
+  left: 10px;
   opacity: 0.1;
   transform: rotate(-45deg);
-  font-size: 400px;
+  font-size: 300px;
   z-index: 1;
 }
