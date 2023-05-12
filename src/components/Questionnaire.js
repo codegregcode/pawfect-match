@@ -5,9 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { TbPaw } from "react-icons/tb";
 import dogFilter from "../utilities/dogFilter";
-import Breeds from "./Breeds";
 import {
   Energy,
   OutdoorSpace,
@@ -22,6 +20,7 @@ import {
   Drooling,
 } from "./questionComponents";
 import "../styles/questionnaire.css";
+import Breeds from "./Breeds";
 
 const Questionnaire = () => {
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -41,16 +40,16 @@ const Questionnaire = () => {
 
   useEffect(() => {
     setAllQuestionsAnswered(
-      energy !== "" ||
-        outdoorSpace !== "" ||
-        indoorSpace !== "" ||
-        children !== "" ||
-        otherDogs !== "" ||
-        training !== "" ||
-        friendliness !== "" ||
-        grooming !== "" ||
-        shedding !== "" ||
-        barking !== "" ||
+      energy !== "" &&
+        outdoorSpace !== "" &&
+        indoorSpace !== "" &&
+        children !== "" &&
+        otherDogs !== "" &&
+        training !== "" &&
+        friendliness !== "" &&
+        grooming !== "" &&
+        shedding !== "" &&
+        barking !== "" &&
         drooling !== ""
     );
   }, [
@@ -295,7 +294,12 @@ const Questionnaire = () => {
           </button>
         )}
         {activeQuestion === questions.length - 1 ? (
-          <button type="button" className="btn-submit" onClick={handleSubmit}>
+          <button
+            type="button"
+            className="btn-submit"
+            data-testid="submit"
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         ) : (
@@ -304,15 +308,13 @@ const Questionnaire = () => {
             onClick={handleNextQuestion}
             disabled={activeQuestion === questions.length - 1}
             className="btn-next"
+            data-testid="next-question-btn"
           >
             <FaArrowRight />
           </button>
         )}
       </form>
       {dogData && dogData.length > 0 && <Breeds dogData={dogData} />}
-      <div className="background-icon">
-        <TbPaw />
-      </div>
     </div>
   );
 };

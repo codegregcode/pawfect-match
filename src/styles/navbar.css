@@ -1,15 +1,13 @@
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
+.navbar {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
-.navbar-title {
-  margin: 0;
-  text-align: center;
-  flex: 1;
-  margin-left: 7rem;
+.navbar-container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 1rem;
 }
 
 .navbar-button {
