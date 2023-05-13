@@ -4,7 +4,7 @@ import "../../styles/questionnaire.css";
 
 const Energy = ({ onClick }) => {
   return (
-    <label>
+    <label htmlFor="energy">
       <h3>Will you and your pup have an active lifestyle?</h3>
       <div className="container">
         <button

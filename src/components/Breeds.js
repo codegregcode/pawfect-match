@@ -1,11 +1,20 @@
 /* eslint-disable no-console */
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/breeds.css";
+import { addToFave } from "../firebase";
 
 const Breeds = ({ dogData }) => {
+  const [faveBreeds, setFaveBreeds] = useState([]);
+
+  const handleFaveCheck = (breed) => {
+    if (!faveBreeds.includes(breed)) {
+      setFaveBreeds([...faveBreeds, breed]);
+      addToFave(breed);
+    }
+  };
   const settings = {
     dots: true,
     arrows: false,
@@ -48,6 +57,10 @@ const Breeds = ({ dogData }) => {
               <p>Good With Strangers: {dog.good_with_strangers}</p>
               <p>Max Size: {dog.max_height_male} &quot;</p>
             </div>
+            <label htmlFor="fave-chk">
+              <input type="checkbox" onChange={() => handleFaveCheck(dog)} />
+              Add to favorites
+            </label>
           </div>
         ))}
       </Slider>
