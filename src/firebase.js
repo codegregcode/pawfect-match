@@ -17,6 +17,7 @@ import {
   collection,
   where,
   addDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -113,6 +114,27 @@ const addToFave = async (breed) => {
   }
 };
 
+const getFaves = async () => {
+  const user = getAuth().currentUser;
+
+  try {
+    if (user) {
+      const { uid } = user;
+      const q = query(collection(db, "favourites"), where("uid", "==", uid));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => doc.data());
+      return data;
+      // const data = querySnapshot.docs.forEach((doc) => {
+      //   console.log(doc.data());
+      //   return doc.data();
+      // });
+    }
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
 export {
   auth,
   db,
@@ -123,4 +145,5 @@ export {
   logout,
   useAuthState,
   addToFave,
+  getFaves,
 };
