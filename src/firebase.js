@@ -122,12 +122,12 @@ const getFaves = async () => {
       const { uid } = user;
       const q = query(collection(db, "favourites"), where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
-      const data = querySnapshot.docs.map((doc) => doc.data());
-      return data;
-      // const data = querySnapshot.docs.forEach((doc) => {
-      //   console.log(doc.data());
-      //   return doc.data();
-      // });
+      // const data = querySnapshot.docs.map((doc) => doc.data());
+      // return data;
+      const data = querySnapshot.docs.forEach((doc) => {
+        console.log(doc.data());
+        return doc.data();
+      });
     }
   } catch (error) {
     console.log(error);
