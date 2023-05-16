@@ -22,7 +22,7 @@ const Dashboard = () => {
       <h2>Dashboard</h2>
       <ul>
         {favorites.map((breed) => (
-          <div key={breed.id}>{breed.name}</div>
+          <div key={breed.uid}>{breed.breed.name}</div>
         ))}
       </ul>
     </div>
