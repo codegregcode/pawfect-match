@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
 import { initializeApp } from "firebase/app";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
@@ -114,6 +116,25 @@ const addToFave = async (breed) => {
   }
 };
 
+// const getFaves = async () => {
+//   const user = getAuth().currentUser;
+
+//   try {
+//     if (user) {
+//       const { uid } = user;
+//       const q = query(collection(db, "favourites"), where("uid", "==", uid));
+//       const querySnapshot = await getDocs(q);
+//       const data = querySnapshot.docs.forEach((doc) => {
+//         console.log(doc.data());
+//         return doc.data();
+//       });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return [];
+//   }
+// };
+
 const getFaves = async () => {
   const user = getAuth().currentUser;
 
@@ -122,13 +143,13 @@ const getFaves = async () => {
       const { uid } = user;
       const q = query(collection(db, "favourites"), where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
-      // const data = querySnapshot.docs.map((doc) => doc.data());
-      // return data;
-      const data = querySnapshot.docs.forEach((doc) => {
+      const data = querySnapshot.docs.map((doc) => {
         console.log(doc.data());
         return doc.data();
       });
     }
+    console.log("No user signed in");
+    return [];
   } catch (error) {
     console.log(error);
     return [];

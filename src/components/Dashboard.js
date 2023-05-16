@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { db, getFaves } from "../firebase";
 import {
   getFirestore,
   query,
@@ -10,6 +9,7 @@ import {
   addDoc,
   updateDoc,
 } from "firebase/firestore";
+import { db, getFaves } from "../firebase";
 
 const Dashboard = () => {
   const [favourites, setFavourites] = useState([]);
@@ -26,7 +26,9 @@ const Dashboard = () => {
   return (
     <div className="breeds-container">
       <h2>My fave pups ❤️:</h2>
-      {favourites}
+      {favourites.map((favourite) => (
+        <div key={favourite.breed}>{favourite.breed}</div>
+      ))}
     </div>
   );
 };
