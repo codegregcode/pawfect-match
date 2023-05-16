@@ -17,17 +17,18 @@ import {
   collection,
   where,
   addDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGE_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -113,6 +114,27 @@ const addToFave = async (breed) => {
   }
 };
 
+const getFaves = async () => {
+  const user = getAuth().currentUser;
+
+  try {
+    if (user) {
+      const { uid } = user;
+      const q = query(collection(db, "favourites"), where("uid", "==", uid));
+      const querySnapshot = await getDocs(q);
+      // const data = querySnapshot.docs.map((doc) => doc.data());
+      // return data;
+      const data = querySnapshot.docs.forEach((doc) => {
+        console.log(doc.data());
+        return doc.data();
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
 export {
   auth,
   db,
@@ -123,4 +145,5 @@ export {
   logout,
   useAuthState,
   addToFave,
+  getFaves,
 };
