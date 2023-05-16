@@ -118,22 +118,23 @@ const addToFave = async (breed) => {
 
 const getFaves = async () => {
   const user = getAuth().currentUser;
+  const favouritesData = [];
 
   try {
     if (user) {
       const { uid } = user;
       const q = query(collection(db, "favourites"), where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
-      const data = querySnapshot.docs.forEach((doc) => {
-        console.log(doc.data());
-        return doc.data();
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.data());
+        favouritesData.push(doc.data());
       });
     }
-    return [];
   } catch (error) {
     console.log(error);
-    return [];
   }
+  // console.log(`favouritesData: ${favouritesData}`);
+  return favouritesData;
 };
 
 // const getFaves = async () => {

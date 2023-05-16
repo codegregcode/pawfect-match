@@ -4,21 +4,32 @@ import { collection } from "firebase/firestore";
 import { db, getFaves } from "../firebase";
 
 const Dashboard = () => {
+  const [favorites, setFavorites] = useState([]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const favorites = await getFaves();
-      console.log(favorites);
+    const fetchFavorites = async () => {
+      const favoritesData = await getFaves();
+      setFavorites(favoritesData);
+      console.log(favoritesData);
       // Perform further operations with the fetched favorites data
     };
 
-    fetchData();
+    fetchFavorites();
   }, []);
 
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <ul>
+        {favorites.map((breed) => (
+          <div key={breed.id}>{breed.name}</div>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default Dashboard;
-
 
 // const Dashboard = () => {
 //   const [favourites, setFavourites] = useState([]);
