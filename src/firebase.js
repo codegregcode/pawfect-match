@@ -116,6 +116,26 @@ const addToFave = async (breed) => {
   }
 };
 
+const getFaves = async () => {
+  const user = getAuth().currentUser;
+
+  try {
+    if (user) {
+      const { uid } = user;
+      const q = query(collection(db, "favourites"), where("uid", "==", uid));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.forEach((doc) => {
+        console.log(doc.data());
+        return doc.data();
+      });
+    }
+    return [];
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
 // const getFaves = async () => {
 //   const user = getAuth().currentUser;
 
@@ -124,7 +144,7 @@ const addToFave = async (breed) => {
 //       const { uid } = user;
 //       const q = query(collection(db, "favourites"), where("uid", "==", uid));
 //       const querySnapshot = await getDocs(q);
-//       const data = querySnapshot.docs.forEach((doc) => {
+//       const data = querySnapshot.docs.map((doc) => {
 //         console.log(doc.data());
 //         return doc.data();
 //       });
@@ -134,27 +154,6 @@ const addToFave = async (breed) => {
 //     return [];
 //   }
 // };
-
-const getFaves = async () => {
-  const user = getAuth().currentUser;
-
-  try {
-    if (user) {
-      const { uid } = user;
-      const q = query(collection(db, "favourites"), where("uid", "==", uid));
-      const querySnapshot = await getDocs(q);
-      const data = querySnapshot.docs.map((doc) => {
-        console.log(doc.data());
-        return doc.data();
-      });
-    }
-    console.log("No user signed in");
-    return [];
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-};
 
 export {
   auth,
