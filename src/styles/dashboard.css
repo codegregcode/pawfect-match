@@ -1,0 +1,38 @@
+.breeds-container {
+    max-width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+    
+    
+  .breed-card {
+    width: 300px;
+    margin: 0 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: var(--color-neutral);
+  }
+
+  .breed-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+  }
+    
+  .breed-details {
+    padding: 10px;
+    text-align: left;
+  }
+    
+  .breed-details p {
+    margin: 0;
+    padding: 5px;
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
