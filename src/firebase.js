@@ -126,19 +126,18 @@ const getFaves = async () => {
       const q = query(collection(db, "favourites"), where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        // console.log(doc.data());
         favouritesData.push(doc.data());
       });
     }
   } catch (error) {
     console.log(error);
   }
+
   return favouritesData;
 };
 
 export {
   auth,
-  db,
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
