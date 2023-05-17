@@ -41,7 +41,6 @@ const Breeds = ({ dogData }) => {
     <div className="breeds-container">
       <h2>Results:</h2>
       <Slider {...settings}>
-        {console.log(dogData)}
         {dogData.map((dog) => (
           <div key={dog.name} className="breed-card">
             <img src={dog.image_link} alt={dog.name} />
