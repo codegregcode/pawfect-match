@@ -133,28 +133,8 @@ const getFaves = async () => {
   } catch (error) {
     console.log(error);
   }
-  // console.log(`favouritesData: ${favouritesData}`);
   return favouritesData;
 };
-
-// const getFaves = async () => {
-//   const user = getAuth().currentUser;
-
-//   try {
-//     if (user) {
-//       const { uid } = user;
-//       const q = query(collection(db, "favourites"), where("uid", "==", uid));
-//       const querySnapshot = await getDocs(q);
-//       const data = querySnapshot.docs.map((doc) => {
-//         console.log(doc.data());
-//         return doc.data();
-//       });
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     return [];
-//   }
-// };
 
 export {
   auth,
