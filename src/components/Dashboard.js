@@ -11,7 +11,7 @@ const Dashboard = () => {
     };
 
     fetchFavorites();
-  }, []);
+  });
 
   return (
     <div className="breeds-container">

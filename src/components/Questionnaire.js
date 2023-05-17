@@ -2,8 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import dogFilter from "../utilities/dogFilter";
 import {
@@ -77,6 +76,7 @@ const Questionnaire = () => {
     }
     const params = {
       energy,
+      offset: 1,
     };
 
     axios
@@ -85,8 +85,6 @@ const Questionnaire = () => {
         headers: { "X-Api-Key": process.env.REACT_APP_API_KEY },
       })
       .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log(response.data);
         const filteredDogs = dogFilter(
           response.data,
           outdoorSpace,
@@ -101,7 +99,6 @@ const Questionnaire = () => {
           drooling
         );
         setDogData(filteredDogs);
-        console.log("filtered dogs", filteredDogs);
         if (filteredDogs.length === 0) {
           toast.error("Sorry no dogs match your critera!");
         } else {
@@ -122,57 +119,46 @@ const Questionnaire = () => {
   };
 
   const handleEnergyClick = (energyLevel) => {
-    console.log("Energy level clicked:", energyLevel);
     setEnergy(energyLevel);
   };
 
   const handleOutdoorSpaceClick = (value) => {
-    console.log("outdoor clicked:", value);
     setOutdoorSpace(value);
   };
 
   const handleIndoorSpaceClick = (value) => {
-    console.log("indoor clicked:", value);
     setIndoorSpace(value);
   };
 
   const handleChildrenClick = (value) => {
-    console.log("children clicked:", value);
     setChildren(value);
   };
 
   const handleOtherDogsClick = (value) => {
-    console.log("otherDpgs clicked:", value);
     setOtherDogs(value);
   };
 
   const handleTrainingClick = (value) => {
-    console.log("training clicked:", value);
     setTraining(value);
   };
 
   const handleFriendlinessClick = (value) => {
-    console.log("friendly clicked:", value);
     setFriendliness(value);
   };
 
   const handleGroomingClick = (value) => {
-    console.log("grooming clicked:", value);
     setGrooming(value);
   };
 
   const handleSheddingClick = (value) => {
-    console.log("shedding clicked:", value);
     setShedding(value);
   };
 
   const handleBarkingClick = (value) => {
-    console.log("barkingclicked:", value);
     setBarking(value);
   };
 
   const handleDroolingClick = (value) => {
-    console.log("drooling clicked:", value);
     setDrooling(value);
   };
 
@@ -280,7 +266,6 @@ const Questionnaire = () => {
 
   return (
     <div className="question-container">
-      <ToastContainer />
       <form>
         {questions[activeQuestion].component}
         {activeQuestion !== 0 && (
