@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./Welcome";
 import "../styles/app.css";
 import Questionnaire from "./Questionnaire";
@@ -12,6 +14,8 @@ import Reset from "./Reset";
 const App = () => {
   return (
     <div className="App">
+      <ToastContainer />
+
       <Navbar />
       <div className="background-image" />
       <Routes>

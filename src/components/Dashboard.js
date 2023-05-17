@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAuth } from "firebase/auth";
-import { collection } from "firebase/firestore";
-import { db, getFaves } from "../firebase";
+import { getFaves } from "../firebase";
 
 const Dashboard = () => {
   const [favorites, setFavorites] = useState([]);
@@ -10,11 +8,10 @@ const Dashboard = () => {
     const fetchFavorites = async () => {
       const favoritesData = await getFaves();
       setFavorites(favoritesData);
-      console.log(favoritesData);
     };
 
     fetchFavorites();
-  }, []);
+  });
 
   return (
     <div className="breeds-container">

@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-console */
 import { initializeApp } from "firebase/app";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
@@ -19,8 +17,8 @@ import {
   collection,
   where,
   addDoc,
-  updateDoc,
 } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -52,9 +50,8 @@ const signInWithGoogle = async () => {
         email: user.email,
       });
     }
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
+  } catch (error) {
+    toast.error("An error occurred");
   }
 };
 
@@ -62,8 +59,7 @@ const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    toast.error(err.message);
   }
 };
 
@@ -78,18 +74,16 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       email,
     });
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    toast.error(err.message);
   }
 };
 
 const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
+    toast.alert("Password reset link sent!");
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    toast.error(err.message);
   }
 };
 
@@ -103,16 +97,28 @@ const addToFave = async (breed) => {
   try {
     if (user) {
       const { uid } = user;
-      await addDoc(collection(db, "favourites"), {
-        breed,
-        uid,
-      });
-      console.log(`${breed} added to favourites`);
+      const favoritesRef = collection(db, "favourites");
+      const querySnapshot = await getDocs(
+        query(
+          favoritesRef,
+          where("uid", "==", uid),
+          where("breed", "==", breed)
+        )
+      );
+
+      if (querySnapshot.empty) {
+        await addDoc(favoritesRef, {
+          breed,
+          uid,
+        });
+      } else {
+        toast.error(`${breed} already exists in favorites`);
+      }
     } else {
-      console.log("No user signed in");
+      toast.error("No user signed in");
     }
   } catch (error) {
-    console.error("Error adding breed to favourites:", error);
+    toast.error("No user signed in");
   }
 };
 
@@ -126,19 +132,18 @@ const getFaves = async () => {
       const q = query(collection(db, "favourites"), where("uid", "==", uid));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        // console.log(doc.data());
         favouritesData.push(doc.data());
       });
     }
   } catch (error) {
-    console.log(error);
+    toast.error(error);
   }
+
   return favouritesData;
 };
 
 export {
   auth,
-  db,
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
