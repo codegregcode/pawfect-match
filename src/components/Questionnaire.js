@@ -124,51 +124,61 @@ const Questionnaire = () => {
   const handleEnergyClick = (energyLevel) => {
     console.log("Energy level clicked:", energyLevel);
     setEnergy(energyLevel);
+    handleNextQuestion();
   };
 
   const handleOutdoorSpaceClick = (value) => {
     console.log("outdoor clicked:", value);
     setOutdoorSpace(value);
+    handleNextQuestion();
   };
 
   const handleIndoorSpaceClick = (value) => {
     console.log("indoor clicked:", value);
     setIndoorSpace(value);
+    handleNextQuestion();
   };
 
   const handleChildrenClick = (value) => {
     console.log("children clicked:", value);
     setChildren(value);
+    handleNextQuestion();
   };
 
   const handleOtherDogsClick = (value) => {
     console.log("otherDpgs clicked:", value);
     setOtherDogs(value);
+    handleNextQuestion();
   };
 
   const handleTrainingClick = (value) => {
     console.log("training clicked:", value);
     setTraining(value);
+    handleNextQuestion();
   };
 
   const handleFriendlinessClick = (value) => {
     console.log("friendly clicked:", value);
     setFriendliness(value);
+    handleNextQuestion();
   };
 
   const handleGroomingClick = (value) => {
     console.log("grooming clicked:", value);
     setGrooming(value);
+    handleNextQuestion();
   };
 
   const handleSheddingClick = (value) => {
     console.log("shedding clicked:", value);
     setShedding(value);
+    handleNextQuestion();
   };
 
   const handleBarkingClick = (value) => {
     console.log("barkingclicked:", value);
     setBarking(value);
+    handleNextQuestion();
   };
 
   const handleDroolingClick = (value) => {
