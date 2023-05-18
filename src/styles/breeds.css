@@ -21,6 +21,7 @@
   background-color: var(--color-neutral);
   transition: all 0.3s ease-in-out;
   z-index: 2;
+  position: relative;
 }
 
 .breed-card:not(.slick-active) {
@@ -33,6 +34,7 @@
   padding: 10px;
   font-size: 1.3rem;
   background-color: #f2f2f2;
+  color: var(--color-dark);
 }
   
 .breed-card img {
@@ -54,10 +56,16 @@
   line-height: 1.2;
 }
 
+
 .slick-current {
   transform: scale(1.2);
   z-index: 1;
 }
+
+.fave-label {
+  font-size: 1rem;
+}
+
 
 @media (max-width: 768px) {
   .breed-card {

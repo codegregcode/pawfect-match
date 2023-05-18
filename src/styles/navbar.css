@@ -1,8 +1,3 @@
-.navbar {
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
 .navbar-container {
   display: flex;
   justify-content: right;
@@ -10,6 +5,25 @@
   padding: 1rem;
 }
 
+.home,
+.dashboard {
+  background-color: var(--color-accent);
+  border: none;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  margin-left: 0.2rem;
+}
+
 .navbar-button {
-  margin-left: 1rem;
+  background-color: var(--color-accent);
+  border: none;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  margin-left: 0.2rem;
 }
