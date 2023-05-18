@@ -22,7 +22,7 @@ const Navbar = () => {
         </button>
       </Link>
       <Link to="/">
-        <button type="button" onClick={logout}>
+        <button className="navbar-button" type="button" onClick={logout}>
           Sign Out
         </button>
       </Link>
