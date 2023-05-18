@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -34,7 +32,7 @@ const Questionnaire = () => {
   const [shedding, setShedding] = useState("");
   const [barking, setBarking] = useState("");
   const [drooling, setDrooling] = useState("");
-  const [dogData, setDogData] = useState(null);
+  const [dogData, setDogData] = useState([]);
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
 
   useEffect(() => {
@@ -74,40 +72,46 @@ const Questionnaire = () => {
       toast.error("Please answer all questions.");
       return;
     }
-    const params = {
-      energy,
-      offset: 1,
+
+    const fetchDogs = (offset) => {
+      const params = {
+        energy,
+        offset,
+      };
+
+      axios
+        .get("https://api.api-ninjas.com/v1/dogs", {
+          params,
+          headers: { "X-Api-Key": process.env.REACT_APP_API_KEY },
+        })
+        .then((response) => {
+          const filteredDogs = dogFilter(
+            response.data,
+            outdoorSpace,
+            indoorSpace,
+            children,
+            otherDogs,
+            training,
+            friendliness,
+            grooming,
+            shedding,
+            barking,
+            drooling
+          );
+          setDogData((prevDogData) => [...prevDogData, ...filteredDogs]);
+          if (offset + 20 < 200) {
+            fetchDogs(offset + 20);
+          }
+          if (offset === 200 && filteredDogs !== 0) {
+            toast.success("Dogs sucessfully fetched!");
+          }
+        })
+        .catch(() => {
+          toast.error("Error fetching dogs. Please try again later.");
+        });
     };
 
-    axios
-      .get("https://api.api-ninjas.com/v1/dogs", {
-        params,
-        headers: { "X-Api-Key": process.env.REACT_APP_API_KEY },
-      })
-      .then((response) => {
-        const filteredDogs = dogFilter(
-          response.data,
-          outdoorSpace,
-          indoorSpace,
-          children,
-          otherDogs,
-          training,
-          friendliness,
-          grooming,
-          shedding,
-          barking,
-          drooling
-        );
-        setDogData(filteredDogs);
-        if (filteredDogs.length === 0) {
-          toast.error("Sorry no dogs match your critera!");
-        } else {
-          toast.success("Dogs successfully fetched!");
-        }
-      })
-      .catch(() => {
-        toast.error("Error fetching dogs. Please try again later.");
-      });
+    fetchDogs(0);
   };
 
   const handleNextQuestion = () => {
@@ -128,7 +132,7 @@ const Questionnaire = () => {
     handleNextQuestion();
   };
 
-  const handleIndoorSpaceClick = (value) => {
+  const handlIndoorSpaceClick = (value) => {
     setIndoorSpace(value);
     handleNextQuestion();
   };
@@ -196,7 +200,7 @@ const Questionnaire = () => {
       component: (
         <IndoorSpace
           onNextQuestion={handleNextQuestion}
-          onClick={handleIndoorSpaceClick}
+          onClick={handlIndoorSpaceClick}
         />
       ),
     },
