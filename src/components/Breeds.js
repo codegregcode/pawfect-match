@@ -55,8 +55,12 @@ const Breeds = ({ dogData }) => {
               <p>Good With Strangers: {dog.good_with_strangers}</p>
               <p>Max Size: {dog.max_height_male} &quot;</p>
             </div>
-            <label htmlFor="fave-chk">
-              <input type="checkbox" onChange={() => handleFaveCheck(dog)} />
+            <label htmlFor="fave-chk" className="fave-label">
+              <input
+                type="checkbox"
+                className="fave-check"
+                onChange={() => handleFaveCheck(dog)}
+              />
               Add to favorites
             </label>
           </div>
