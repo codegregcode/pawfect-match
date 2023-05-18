@@ -47,9 +47,6 @@ const Login = () => {
           Login with Google
         </button>
         <div>
-          <Link to="/reset">Forgot Password</Link>
-        </div>
-        <div>
           Don&apos;t have an account? <Link to="/register">Register</Link> now.
         </div>
         <div>
