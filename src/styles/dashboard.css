@@ -1,14 +1,16 @@
-.breeds-container {
-    max-width: 80%;
-    margin: 0 auto;
-    text-align: center;
+.fave-breeds-container {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .fave-breeds-container h2 {
+    margin-top: 0;
   }
     
-    
-  .breed-card {
+  .fave-breed-card {
     width: 300px;
     margin: 0 20px;
     border: 1px solid #ccc;
@@ -18,19 +20,19 @@
     background-color: var(--color-neutral);
   }
 
-  .breed-card img {
+  .fave-breed-card img {
     width: 100%;
     height: auto;
     object-fit: cover;
     overflow: hidden;
   }
     
-  .breed-details {
+  .fave-breed-details {
     padding: 10px;
     text-align: left;
   }
     
-  .breed-details p {
+  .fave-breed-details p {
     margin: 0;
     padding: 5px;
     font-size: 0.8rem;

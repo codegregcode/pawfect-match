@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getFaves } from "../firebase";
+import "../styles/dashboard.css";
 
 const Dashboard = () => {
   const [favorites, setFavorites] = useState([]);
@@ -14,14 +15,14 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="breeds-container">
+    <div className="fave-breeds-container">
       <h2>Dashboard</h2>
       <ul>
         {favorites.map((breed) => (
-          <div key={breed.breed.name} className="breed-card">
+          <div key={breed.breed.name} className="fav-breed-card">
             <img src={breed.breed.image_link} alt={breed.breed.name} />
             <h3>{breed.breed.name}</h3>
-            <div className="breed-details">
+            <div className="fave-breed-details">
               <p>Energy: {breed.breed.energy}</p>
               <p>Grooming: {breed.breed.grooming}</p>
               <p>Shedding: {breed.breed.shedding}</p>
