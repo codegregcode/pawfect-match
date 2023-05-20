@@ -37,6 +37,9 @@
     "eject": "react-scripts eject"
   },
   "jest": {
+    "setupFiles": [
+      "test-setup.js"
+    ],
     "transformIgnorePatterns": [
       "node_modules/(?!axios)/"
     ]
