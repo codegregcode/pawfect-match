@@ -15,7 +15,7 @@ describe("Register", () => {
   });
 
   it("should render the register form", () => {
-    const { getByPlaceholderText, getByText, getByTestId } = render(
+    const { getByPlaceholderText, getByTestId } = render(
       <Router>
         <Register />
       </Router>
