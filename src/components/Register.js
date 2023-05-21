@@ -8,6 +8,7 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "../firebase";
+import "../styles/register.css";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -67,7 +68,7 @@ const Register = () => {
           Register with Google
         </button>
         <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          Already have an account? <Link to="/login">Login</Link> now.
         </div>
       </div>
     </div>
