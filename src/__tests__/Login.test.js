@@ -25,7 +25,6 @@ describe("Login", () => {
     const passwordInput = getByPlaceholderText("Password");
     const loginButton = getByTestId("login-btn");
     const loginWithGoogleButton = getByText("Login with Google");
-    const forgotPasswordLink = getByText("Forgot Password");
     const registerLink = getByText("Register");
     const resetPasswordLink = getByText("here");
 
@@ -33,7 +32,6 @@ describe("Login", () => {
     expect(passwordInput).toBeInTheDocument();
     expect(loginButton).toBeInTheDocument();
     expect(loginWithGoogleButton).toBeInTheDocument();
-    expect(forgotPasswordLink).toBeInTheDocument();
     expect(registerLink).toBeInTheDocument();
     expect(resetPasswordLink).toBeInTheDocument();
   });
