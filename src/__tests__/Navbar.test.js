@@ -1,39 +1,75 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { logout } from "../firebase";
+
+jest.mock("../firebase", () => ({
+  logout: jest.fn(),
+}));
 
 describe("Navbar", () => {
-  it("renders title", () => {
-    const { getByText } = render(
+  beforeEach(() => {
+    render(
       <Router>
         <Navbar />
       </Router>
     );
-    const titleElement = getByText("Pawfect Match!");
-
-    expect(titleElement).toBeInTheDocument();
   });
 
-  it("renders login/signup button", () => {
-    const { getByRole } = render(
-      <Router>
-        <Navbar />
-      </Router>
-    );
-    const buttonElement = getByRole("button");
+  it("renders home btn", () => {
+    const home = screen.getByTestId("home-btn");
 
-    expect(buttonElement).toHaveTextContent("Login/SignUp!");
+    expect(home).toHaveTextContent("Home");
   });
 
-  it("login/signup button links to LoginSignup component", () => {
-    const { getByRole } = render(
-      <Router>
-        <Navbar />
-      </Router>
-    );
-    const buttonElement = getByRole("button");
+  it("home btn links to App component", () => {
+    const home = screen.getByTestId("home-btn");
 
-    expect(buttonElement.closest("a")).toHaveAttribute("href", "/login-signup");
+    expect(home.closest("a")).toHaveAttribute("href", "/");
+  });
+
+  it("renders dashboard btn", () => {
+    const dashboard = screen.getByTestId("dashboard-btn");
+
+    expect(dashboard).toHaveTextContent("Dashboard");
+  });
+
+  it("dashboard btn links to Dashboard component", () => {
+    const dashboard = screen.getByTestId("dashboard-btn");
+
+    expect(dashboard.closest("a")).toHaveAttribute("href", "/dashboard");
+  });
+
+  it("renders login btn", () => {
+    const login = screen.getByTestId("login-btn");
+
+    expect(login).toHaveTextContent("Login/SignUp!");
+  });
+
+  it("login btn links to Login component", () => {
+    const login = screen.getByTestId("login-btn");
+
+    expect(login.closest("a")).toHaveAttribute("href", "/login");
+  });
+
+  it("renders signout btn", () => {
+    const signout = screen.getByTestId("signout-btn");
+
+    expect(signout).toHaveTextContent("Sign Out");
+  });
+
+  it("signout btn links to App component", () => {
+    const signout = screen.getByTestId("signout-btn");
+
+    expect(signout.closest("a")).toHaveAttribute("href", "/");
+  });
+
+  it("signout btn calls logout fn", () => {
+    const signout = screen.getByTestId("signout-btn");
+
+    fireEvent.click(signout);
+
+    expect(logout).toHaveBeenCalled();
   });
 });

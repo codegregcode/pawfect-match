@@ -2,6 +2,11 @@ import React from "react";
 import { render } from "@testing-library/react";
 import Breeds from "../components/Breeds";
 
+jest.mock("react-slick", () => {
+  return function ({ children }) {
+    return <div>{children}</div>;
+  };
+});
 const mockDogData = [
   {
     name: "Jack Russell",
@@ -43,19 +48,16 @@ const mockDogData = [
     max_height_male: 7,
   },
 ];
-
 describe("Breeds", () => {
-  xit("renders breeds component with correct number of dogs", () => {
+  it("renders breeds component with correct number of dogs", () => {
     const { getAllByRole } = render(<Breeds dogData={mockDogData} />);
     const dogs = getAllByRole("img");
     expect(dogs).toHaveLength(mockDogData.length);
   });
-
   it("renders the correct information for dogs", () => {
     const { getByText, getByAltText } = render(
       <Breeds dogData={mockDogData} />
     );
-
     mockDogData.forEach((dog) => {
       expect(getByText(dog.name)).toBeInTheDocument();
       expect(getByAltText(dog.name)).toHaveAttribute("src", dog.image_link);
