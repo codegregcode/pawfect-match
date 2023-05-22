@@ -51,10 +51,16 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button type="button" className="register__btn" onClick={register}>
+        <button
+          data-testid="register"
+          type="button"
+          className="register__btn"
+          onClick={register}
+        >
           Register
         </button>
         <button
+          data-testid="google-reg"
           type="button"
           className="register__btn register__google"
           onClick={signInWithGoogle}
