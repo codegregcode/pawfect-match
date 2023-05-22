@@ -17,62 +17,59 @@ describe("Questionnaire", () => {
   });
 
   it("cycles through the questions following next question btn clk", () => {
-    fireEvent.click(screen.getByText("A short walk or playing in the garden"));
+    const clickByText = (text) => fireEvent.click(screen.getByText(text));
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("A short walk or playing in the garden");
     expect(
       screen.getByText("How much outdoor space do you have?")
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("I have no outdoor space");
     expect(
       screen.getByText("How much indoor space do you have?")
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("I live in a small apartment");
     expect(screen.getByText("Do you have children?")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("No, never ever");
     expect(screen.getByText("Do you have other dogs?")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("No");
     expect(
       screen.getByText("What level of training will you give them?")
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("Basic");
     expect(
       screen.getByText("How friendly should they be?")
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("Friendly with everyone!");
     expect(
       screen.getByText("How much time can you spend grooming your dog?")
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("Just the occasional brush");
     expect(screen.getByText("Does shedding bother you?")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("A little shedding is ok");
     expect(screen.getByText("Does barking bother you?")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId("next-question-btn"));
-
+    clickByText("A little barking is ok");
     expect(screen.getByText("Does drooling bother you?")).toBeInTheDocument();
   });
 
-  xit("displays error message when trying to submit before answering questions", () => {
-    fireEvent.click(screen.getByTestId("submit"));
+  it("displays error message when trying to submit before answering questions", () => {
+    const nextQuestionButton = screen.getByTestId("next-question-btn");
 
+    for (let i = 0; i < 10; i += 1) {
+      fireEvent.click(nextQuestionButton);
+    }
+
+    const submitButton = screen.getByTestId("submit");
+
+    fireEvent.click(submitButton);
     expect(toast.error).toHaveBeenCalledWith("Please answer all questions.");
   });
 });

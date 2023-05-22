@@ -35,6 +35,7 @@ const Login = () => {
         <button
           type="button"
           className="login__btn"
+          data-testid="login-btn"
           onClick={() => logInWithEmailAndPassword(email, password)}
         >
           Login
@@ -42,6 +43,7 @@ const Login = () => {
         <button
           type="button"
           className="login__btn login__google"
+          data-testid="google-btn"
           onClick={signInWithGoogle}
         >
           Login with Google
