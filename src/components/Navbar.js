@@ -22,7 +22,12 @@ const Navbar = () => {
         </button>
       </Link>
       <Link to="/">
-        <button data-testid="signout-btn" className="navbar-button" type="button" onClick={logout}>
+        <button
+          data-testid="signout-btn"
+          className="navbar-button"
+          type="button"
+          onClick={logout}
+        >
           Sign Out
         </button>
       </Link>
