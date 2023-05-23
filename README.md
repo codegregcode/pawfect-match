@@ -1,6 +1,6 @@
 ## Pawfect Match
 
-Find your Paw Pal! - Follow the link to use [pawfect-match-23.netlify.app/](https://pawfect-match-23.netlify.app/) or see installtion instructions below.
+Find your Paw Pal! - Follow the link to use => [pawfect-match-23.netlify.app/](https://pawfect-match-23.netlify.app/) or see installation instructions below.
 
 ### What we wanted to acheive:
 
@@ -8,7 +8,7 @@ Our app aims to provide users with personalised dog breed recommendations based 
 
 ### How will it work?
 
-It'll do this by taking the users information such as house size, training requirements/experience etc in a questionnaire. Some of the users responses are sent as params to [API-Ninjas dog API](https://api-ninjas.com/api/dogs), and the rest of the responses are matched by filtering down the API result. The results will be shown to user and hopefully they will find their pawfect match! . User can signup to save their favourite dog breeds, which means they can come back at a later date to see results, and can also change response to the questionnaire.
+It'll do this by taking the users information such as house size, training requirements/experience etc in a questionnaire. Some of the users responses are sent as params to [API-Ninjas dog API](https://api-ninjas.com/api/dogs), and the rest of the responses are matched by filtering down the API results. The results will be shown to the user and hopefully they'll find their pawfect match! Users will also be able to signup so that they can save their favourite breeds from the results.
 
 ### Tech used:
 
@@ -62,13 +62,11 @@ Configuration
    REACT_APP_FIREBASE_MEASUREMENT_ID=your_firebase_measurement_id
    ```
 
-To use Pawfect Match, follow these steps:
+Then to use Pawfect Match, follow these steps:
 
 1. Launch the app by running the following command:
 
 ```
-shell
-
 npm start
 ```
 
