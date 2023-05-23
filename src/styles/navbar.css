@@ -1,6 +1,6 @@
 .navbar-container {
   display: flex;
-  justify-content: right;
+  justify-content: flex-start;
   align-items: center;
   padding: 1rem;
 }
@@ -26,4 +26,8 @@
   color: white;
   font-weight: 600;
   margin-left: 0.2rem;
+}
+
+#logo {
+  margin-right: auto;
 }
