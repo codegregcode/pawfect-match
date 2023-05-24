@@ -3,7 +3,6 @@ import "../../styles/questionnaire.css";
 
 const Barking = ({ onClick }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label htmlFor="barking">
       <h3>Does barking bother you?</h3>
       <div className="container">

@@ -3,7 +3,6 @@ import "../../styles/questionnaire.css";
 
 const Friendly = ({ onClick }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label htmlFor="friendliness">
       <h3>How friendly should they be?</h3>
       <div className="container">

@@ -3,7 +3,6 @@ import "../../styles/questionnaire.css";
 
 const Drooling = ({ onClick }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label htmlFor="drooling">
       <h3>Does drooling bother you?</h3>
       <div className="container">
