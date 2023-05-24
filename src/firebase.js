@@ -94,7 +94,7 @@ const logout = () => {
 };
 
 const addToFave = async (breed) => {
-  const user = getAuth().currentUser;
+  const user = auth.currentUser;
 
   try {
     if (user) {
@@ -125,7 +125,7 @@ const addToFave = async (breed) => {
 };
 
 const getFaves = async () => {
-  const user = getAuth().currentUser;
+  const user = auth.currentUser;
   const favouritesData = [];
 
   try {
