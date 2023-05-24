@@ -3,7 +3,6 @@ import "../../styles/questionnaire.css";
 
 const IndoorSpace = ({ onClick }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label htmlFor="indoorSpace">
       <h3>How much indoor space do you have?</h3>
       <div className="container">

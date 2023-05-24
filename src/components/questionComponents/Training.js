@@ -3,7 +3,6 @@ import "../../styles/questionnaire.css";
 
 const Training = ({ onClick }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label htmlFor="training">
       <h3>What level of training will you give them?</h3>
       <div className="container">

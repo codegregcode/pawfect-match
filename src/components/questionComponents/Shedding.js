@@ -3,7 +3,6 @@ import "../../styles/questionnaire.css";
 
 const Shedding = ({ onClick }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label htmlFor="shedding">
       <h3>Does shedding bother you?</h3>
       <div className="container">

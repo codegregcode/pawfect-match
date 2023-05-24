@@ -3,7 +3,6 @@ import "../../styles/questionnaire.css";
 
 const Children = ({ onClick }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label htmlFor="children">
       <h3>Do you have children?</h3>
       <div className="container">

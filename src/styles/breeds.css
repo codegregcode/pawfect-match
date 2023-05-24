@@ -56,7 +56,6 @@
   line-height: 1.2;
 }
 
-
 .slick-current {
   transform: scale(1.2);
   z-index: 1;
@@ -65,7 +64,6 @@
 .fave-label {
   font-size: 1rem;
 }
-
 
 @media (max-width: 768px) {
   .breed-card {

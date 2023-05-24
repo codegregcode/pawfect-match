@@ -3,7 +3,6 @@ import "../../styles/questionnaire.css";
 
 const OtherDogs = ({ onClick }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label htmlFor="otherDogs">
       <h3>Do you have other dogs?</h3>
       <div className="container">
