@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../firebase";
 import "../styles/navbar.css";
+import logo from "../images/logo.png";
 
 const Navbar = () => {
   return (
     <div className="navbar-container">
+      <img src={logo} alt="site logo" id="logo" />
       <Link to="/">
         <button data-testid="home-btn" className="home" type="button">
           Home
