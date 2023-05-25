@@ -69,7 +69,8 @@ const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = res;
-    await setDoc(doc(db, "users", user.uid), {
+    const userRef = doc(db, "users", user.uid);
+    await setDoc(userRef, {
       uid: user.uid,
       name,
       authProvider: "local",
@@ -94,25 +95,20 @@ const logout = () => {
 };
 
 const addToFave = async (breed) => {
-  const user = auth.currentUser;
-
   try {
+    const user = auth.currentUser;
+
     if (user) {
       const { uid } = user;
-      const favoritesRef = collection(db, "favourites");
+      const userRef = doc(db, "users", uid);
+      const favoritesRef = collection(userRef, "favourites");
+
       const querySnapshot = await getDocs(
-        query(
-          favoritesRef,
-          where("uid", "==", uid),
-          where("breed", "==", breed)
-        )
+        query(favoritesRef, where("breed", "==", breed))
       );
 
       if (querySnapshot.empty) {
-        await addDoc(favoritesRef, {
-          breed,
-          uid,
-        });
+        await addDoc(favoritesRef, { breed });
       } else {
         toast.error(`${breed} already exists in favorites`);
       }
@@ -120,7 +116,7 @@ const addToFave = async (breed) => {
       toast.error("No user signed in");
     }
   } catch (error) {
-    toast.error("No user signed in");
+    toast.error("An error occurred");
   }
 };
 
@@ -131,10 +127,13 @@ const getFaves = async () => {
   try {
     if (user) {
       const { uid } = user;
-      const q = query(collection(db, "favourites"), where("uid", "==", uid));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((aDoc) => {
-        favouritesData.push(aDoc.data());
+      const userRef = doc(db, "users", uid);
+      const favouritesRef = collection(userRef, "favourites");
+
+      const querySnapshot = await getDocs(favouritesRef);
+
+      querySnapshot.forEach((breedDoc) => {
+        favouritesData.push(breedDoc.data());
       });
     }
   } catch (error) {
